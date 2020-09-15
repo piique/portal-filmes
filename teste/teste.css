@@ -1,0 +1,35 @@
+#teste1 {
+  position: relative;
+  padding: 4px;
+  background-color: #cf6
+}
+
+#teste1:hover {
+  top: -2px;
+  box-shadow: 0 2px 2px #666
+}
+
+#teste2 {
+  position: relative;
+  padding: 4px;
+  background-color: #cf6
+}
+
+#teste2:hover {
+  top: -2px;
+  border-bottom: 2px solid #999;
+  padding-bottom: 2px
+}
+
+#teste3 {
+  position: relative;
+  top: 0;
+  padding: 4px;
+  background-color: #cf6;
+  transition: all .2s ease-in-out
+}
+
+#teste3:hover {
+  top: -4px;
+  box-shadow: 0 4px 3px #999
+}

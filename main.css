@@ -551,9 +551,10 @@ ul {
   color: #8197a4;
 }
 
-.divisioria {
+.divisoria {
   border: 2px solid #8197a4;
   border-radius: 4px;
+  margin-top: 20px;
   margin-bottom: 20px;
 }
 
@@ -582,7 +583,13 @@ ul {
 }
 
 footer {
-  text-align: center;
-  padding: 0.7%;
   background-color: #8197a4;
+}
+
+footer p {
+  text-align: center;
+  padding: 0.8%;
+  bottom: 0;
+  background-color: #8197a4;
+  height: 100px;
 }

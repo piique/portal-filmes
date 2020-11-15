@@ -50,16 +50,16 @@ class Lancamentos extends React.Component {
     return (
       <div id="lancamentos">
         <h1>Lançamentos</h1>
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="false">
-          <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel" data-interval="false">
+          <ol className="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
           </ol>
-          <div class="carousel-inner">
-            <div class="carousel-item active">
+          <div className="carousel-inner">
+            <div className="carousel-item active">
               <img src={(this.state.lancamentos.length !== 0 ? 'https://image.tmdb.org/t/p/w500' + this.state.lancamentos[0].poster_path : '')} alt="" />
-              <div class="carrousel-description">
+              <div className="carrousel-description">
 
                 <h2>
                   {this.state.lancamentos.length !== 0
@@ -93,9 +93,9 @@ class Lancamentos extends React.Component {
 
               </div>
             </div>
-            <div class="carousel-item">
+            <div className="carousel-item">
               <img src={(this.state.lancamentos.length !== 0 ? 'https://image.tmdb.org/t/p/w500' + this.state.lancamentos[1].poster_path : '')} alt="" />
-              <div class="carrousel-description">
+              <div className="carrousel-description">
 
                 <h2>
                   {this.state.lancamentos.length !== 0
@@ -129,11 +129,11 @@ class Lancamentos extends React.Component {
 
               </div>
             </div>
-            <div class="carousel-item">
+            <div className="carousel-item">
               <img src={(this.state.lancamentos.length !== 0
                 ? 'https://image.tmdb.org/t/p/w500' + this.state.lancamentos[3].poster_path
                 : '')} alt="" />
-              <div class="carrousel-description">
+              <div className="carrousel-description">
 
                 <h2>
                   {this.state.lancamentos.length !== 0
@@ -168,13 +168,13 @@ class Lancamentos extends React.Component {
               </div>
             </div>
           </div>
-          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
+          <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span className="sr-only">Previous</span>
           </a>
-          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
+          <a className="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span className="carousel-control-next-icon" aria-hidden="true"></span>
+            <span className="sr-only">Next</span>
           </a>
         </div>
       </div>

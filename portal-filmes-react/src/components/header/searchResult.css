@@ -1,0 +1,77 @@
+.searchResult {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 40px;
+  /* margin-bottom: 220px; */
+  padding: 40px;
+  justify-content: space-evenly;
+}
+
+.searchResult-item {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  margin: 10px;
+  border: 7px solid rgb(43, 66, 87);
+}
+
+.searchResult-item img {
+  /* width: auto; */
+  width: 333.333px;
+  height: 500px;
+}
+
+.searchResult-item p {
+  /* width: auto; */
+  padding-top: 12px;
+  max-width: 333.333px;
+}
+
+.notFound {
+  color: white;
+  text-align: center;
+  font-size: 1.5em;
+  margin: 0;
+}
+
+/* search form */
+
+* {
+  box-sizing: border-box;
+}
+
+/* Style the search field */
+
+form.example input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
+}
+
+form.example button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  /* Prevent double borders */
+  cursor: pointer;
+}
+
+form.example button:hover {
+  background: #0b7dda;
+}
+
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}

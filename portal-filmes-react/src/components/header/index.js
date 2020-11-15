@@ -3,6 +3,14 @@
 import React, { Fragment } from "react";
 import logo from '../../img/logo-branco.png';
 import api from '../api';
+import './searchResult.css';
+
+import Paper from '@material-ui/core/Paper';
+import InputBase from '@material-ui/core/InputBase';
+import IconButton from '@material-ui/core/IconButton';
+import SearchIcon from '@material-ui/icons/Search';
+
+
 
 class Header extends React.Component {
 
@@ -14,19 +22,20 @@ class Header extends React.Component {
         display: 'none'
       },
       hasSearch: false,
-      filme: []
+      filme: [],
+      searchInput: '',
     }
+    this.handleChange = this.handleChange.bind(this);
   }
 
+  handleChange(e) {
+    this.setState({ searchInput: e.target.value })
+  }
 
   handleClick(e) {
     e.preventDefault();
 
-    console.log(e);
-    console.log("filmes: ")
-    console.log(this.state.filme)
-    console.log(e.target.children[1].value)
-    if (e.target.children[1].value) {
+    if (this.state.searchInput) {
       console.log('chamar nova pagina com as informações')
       this.setState({
         estilo: {
@@ -34,10 +43,9 @@ class Header extends React.Component {
         },
         hasSearch: true,
       });
-      this.buscaFilme(e.target.children[1].value);
+      this.buscaFilme();
     } else {
       console.log('recarregar mesma pagina')
-      // estilo.display = 'none';
       this.setState({
         estilo: {
           display: 'none',
@@ -47,9 +55,9 @@ class Header extends React.Component {
     }
   }
 
-  buscaFilme(filmName) {
+  buscaFilme() {
     // api.get(`discover/movie?api_key=cf2c3634ed88cbfe8f8472ad68c511e6&language=pt-BR&sort_by=release_date.asc&include_adult=false&include_video=true&page=${page}&primary_release_year=2020&vote_average.gte=7`)
-    api.get(`https://api.themoviedb.org/3/search/movie?api_key=cf2c3634ed88cbfe8f8472ad68c511e6&language=pt-BR&query=${filmName}&page=1&include_adult=false`)
+    api.get(`https://api.themoviedb.org/3/search/movie?api_key=cf2c3634ed88cbfe8f8472ad68c511e6&language=pt-BR&query=${this.state.searchInput}&page=1&include_adult=false`)
       .then(({ data }) => {
         if (data.length === 0) {
 
@@ -60,7 +68,7 @@ class Header extends React.Component {
           filme: data.results.filter(((e) => {
             return e.overview !== "" && count++ <= 3 && e.poster_path
           })).map((e) => {
-            console.log(e.release_date)
+            if (!e.release_date) return e;
             const data = new Date(e.release_date)
             e.release_date = (
               (data.getDay() < 10 ? '0' + data.getDay() : data.getDay()) + '/'
@@ -79,10 +87,31 @@ class Header extends React.Component {
   }
 
   render() {
-
+    const classes = {
+      root: {
+        padding: '2px 4px',
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        width: 300,
+      },
+      input: {
+        paddingLeft: '13px',
+        // backgroundColor: 'blue',
+        flex: 1,
+      },
+      iconButton: {
+        padding: 10,
+      },
+      divider: {
+        height: 28,
+        margin: 4,
+      },
+    };
 
     return (
       <Fragment>
+
         <header className="header">
           <img className="logo" src={logo} alt="Logo" height="90%" />
           <nav id="menu">
@@ -118,20 +147,44 @@ class Header extends React.Component {
               </li>
             </ul>
           </nav>
-          <form className="form-inline" onSubmit={(e) => { this.handleClick(e) }}>
-            <i className="fa fa-search" aria-hidden="true"></i>
-            <input className="input-search" id="input-search" type="text" placeholder="Pesquisar filme" aria-label="Search" />
-          </form>
+          <Paper className="form-inline" component="form" style={classes.root} onSubmit={(e) => { this.handleClick(e) }}>
+            <InputBase
+              style={classes.input}
+              placeholder="Pesquisar Filme"
+              inputProps={{ 'aria-label': 'search google maps' }}
+              onChange={this.handleChange}
+            />
+            <IconButton type="submit" className={classes.iconButton} aria-label="search">
+              <SearchIcon onClick={(e) => { this.handleClick(e) }} />
+            </IconButton>
+          </Paper>
         </header>
+
         <div className="searchResult" style={this.state.estilo}>
-          {'mostrar que nenhum filme com o nome blablabla foi encontrado'}
           {this.state.filme.length > 0
-            ? this.state.filme.map((e) => {
-              return <h7>{e.title}</h7>
+            ? this.state.filme.map((e, index) => {
+              return <div key={index} className="searchResult-item">
+                {/* varias coisas repetidas */}
+                <a href={`http://www.google.com/search?q=${e.title}`} target="_blank" rel="noreferrer">
+                  <img
+                    src={e ? ('https://image.tmdb.org/t/p/w500/' + e.poster_path) : ''}
+                    alt="" />
+                </a>
+                <p>
+                  <b>{e.title}</b>
+                  <br />
+                  {e.overview}
+                  <br />
+                  <br />
+                  <b>Data de Lançamento: </b> {e.release_date}
+                  <br />
+                  <br />
+                  <b>Avaliação: </b> {e.vote_average + ' / 10'}
+                </p>
+              </div>
             })
-            : false}
-          {this.state.filme[0] ? ('https://image.tmdb.org/t/p/w500/' + this.state.filme[0].poster_path) : ''}
-          <img src={this.state.filme[0] ? ('https://image.tmdb.org/t/p/w500/' + this.state.filme[0].poster_path) : ''} alt="" />
+            : <div className="notFound">Nenhum resultado encontrado para busca! </div>}
+          {/* <img src={this.state.filme[0] ? ('https://image.tmdb.org/t/p/w500/' + this.state.filme[0].poster_path) : ''} alt="" /> */}
         </div>
 
       </Fragment >

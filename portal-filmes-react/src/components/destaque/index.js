@@ -55,17 +55,17 @@ function Destaque() {
   }
   return (
     <div id="destaque">
-      <h2 class="destaque-item">Em destaque</h2>
-      <select id="select-destaque" class="destaque-item custom-select custom-select-sm" onChange={destaqueOnChange}>
-        <option value="0" selected>Ação</option>
+      <h2 className="destaque-item">Em destaque</h2>
+      <select id="select-destaque" className="destaque-item custom-select custom-select-sm" onChange={destaqueOnChange}>
+        <option value="0" defaultValue>Ação</option>
         <option value="1">Romance</option>
         <option value="2">Comedia</option>
         <option value="3">Aventura</option>
       </select>
-      <img class="destaque-item destaque-item1" src={img1} href="#avaliacoes" alt="" />
-      <img class="destaque-item destaque-item2" src={img2} alt="" />
-      <img class="destaque-item destaque-item3" src={img3} alt="" />
-      <img class="destaque-item destaque-item4" src={img4} alt="" />
+      <img className="destaque-item destaque-item1" src={img1} href="#avaliacoes" alt="" />
+      <img className="destaque-item destaque-item2" src={img2} alt="" />
+      <img className="destaque-item destaque-item3" src={img3} alt="" />
+      <img className="destaque-item destaque-item4" src={img4} alt="" />
     </div>
   );
 }

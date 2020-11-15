@@ -84,11 +84,16 @@ ul {
 /* telas pequenas com no maximo 525px de width */
 
 @media screen and (max-width: 525px) {
+  .header {
+    padding: 0px;
+  }
   .header nav {
     display: none;
   }
   .form-inline {
-    display: none !important;
+    /* display: none !important; */
+    margin-left: 10px !important;
+    margin-right: 10px !important;
   }
   .carousel-item.active {
     /* align-items: start!important; */

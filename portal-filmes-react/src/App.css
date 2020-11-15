@@ -44,14 +44,15 @@ ul {
   /* border-left: 2px solid; */
 }
 
-.menu-list a {
-  color: rgb(186, 193, 241);
+.link {
+  color: rgb(186, 193, 241) !important;
+  /* color: white !important; */
   outline: 0;
   cursor: pointer;
 }
 
-.menu-list a:hover {
-  color: white;
+.menu-list .link:hover {
+  color: white !important;
   text-decoration: none;
 }
 

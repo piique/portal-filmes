@@ -4,6 +4,7 @@ import React, { Fragment } from "react";
 import logo from '../../img/logo-branco.png';
 import api from '../api';
 import './searchResult.css';
+import { Link } from "react-scroll";
 
 import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
@@ -24,6 +25,12 @@ class Header extends React.Component {
       hasSearch: false,
       filme: [],
       searchInput: '',
+      menu: [
+        { name: 'Lançamentos', link: 'lancamento' },
+        { name: 'Em Destaque', link: 'destaque' },
+        { name: 'Avaliações', link: 'avaliacoes' },
+        { name: 'Entrevistas & Makingof', link: 'entrevistas' },
+      ]
     }
     this.handleChange = this.handleChange.bind(this);
   }
@@ -116,35 +123,29 @@ class Header extends React.Component {
           <img className="logo" src={logo} alt="Logo" height="90%" />
           <nav id="menu">
             <ul className="menu-list">
-              <li>
-                <a href="#lancamentos">
-                  Lançamentos
-            </a>
-              </li>
-              <li>
-                |
-          </li>
-              <li>
-                <a href="#destaque">
-                  Em Destaque
-            </a>
-              </li>
-              <li>
-                |
-          </li>
-              <li>
-                <a href="#avaliacoes">
-                  Avaliações
-          </a>
-              </li>
-              <li>
-                |
-          </li>
-              <li>
-                <a href="#entrevistas">
-                  Entrevistas & Makingof
-              </a>
-              </li>
+              {this.state.menu.map((e, index) => {
+                return <Fragment>
+                  <li>
+                    <Link
+                      activeClass="active"
+                      className="link"
+                      to={e.link}
+                      spy={true}
+                      smooth={true}
+                      offset={-70}
+                      duration={1000}>
+                      {e.name}
+                    </Link>
+                  </li>
+                  {/* adiciona | apenas entre os itens do menu */}
+                  {index !== this.state.menu.length - 1
+                    ? <li style={{ color: 'white' }}>
+                      |
+                    </li>
+                    : ''
+                  }
+                </Fragment>
+              })}
             </ul>
           </nav>
           <Paper className="form-inline" component="form" style={classes.root} onSubmit={(e) => { this.handleClick(e) }}>
@@ -154,8 +155,8 @@ class Header extends React.Component {
               inputProps={{ 'aria-label': 'search google maps' }}
               onChange={this.handleChange}
             />
-            <IconButton type="submit" className={classes.iconButton} aria-label="search">
-              <SearchIcon onClick={(e) => { this.handleClick(e) }} />
+            <IconButton type="submit" styles={classes.iconButton} aria-label="search" onClick={(e) => { this.handleClick(e) }}>
+              <SearchIcon />
             </IconButton>
           </Paper>
         </header>

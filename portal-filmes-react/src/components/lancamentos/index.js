@@ -48,7 +48,7 @@ class Lancamentos extends React.Component {
 
   render() {
     return (
-      <div id="lancamentos">
+      <div id="lancamentos" >
         <h1>Lançamentos</h1>
         <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel" data-interval="false">
           <ol className="carousel-indicators">

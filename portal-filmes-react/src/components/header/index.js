@@ -73,7 +73,7 @@ class Header extends React.Component {
         // pega 3 lançamentos que possuem overview
         this.setState({
           filme: data.results.filter(((e) => {
-            return e.overview !== "" && count++ <= 3 && e.poster_path
+            return e.overview !== "" && count++ < 4 && e.poster_path
           })).map((e) => {
             if (!e.release_date) return e;
             const data = new Date(e.release_date)
@@ -133,7 +133,7 @@ class Header extends React.Component {
                       spy={true}
                       smooth={true}
                       offset={-70}
-                      duration={1000}>
+                      duration={500}>
                       {e.name}
                     </Link>
                   </li>

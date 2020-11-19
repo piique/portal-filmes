@@ -5,6 +5,7 @@ import panteraImg from '../../img/noticias/pantera.jpg';
 import madonaImg from '../../img/noticias/madona.jpg';
 import batmanImg from '../../img/noticias/batman.jpg';
 
+import { IconButton } from '@material-ui/core';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import TwitterIcon from '@material-ui/icons/Twitter';
@@ -118,9 +119,24 @@ function Novidades() {
           <b> Gerente Geral: </b> Pedro "Piique"
           <br />
           <h4>Redes sociais:</h4>
-          <FacebookIcon style={lateralMargin} onClick={() => openLink('https://www.facebook.com/phvilaca')} />
-          <TwitterIcon style={lateralMargin} onClick={() => openLink('https://twitter.com/phvilaca1999')} />
-          <InstagramIcon style={lateralMargin} onClick={() => openLink('https://www.instagram.com/phvilaca/')} />
+          <IconButton
+            color="inherit"
+            onClick={() => openLink('https://www.facebook.com/phvilaca')}
+            style={lateralMargin}>
+            <FacebookIcon />
+          </IconButton>
+          <IconButton
+            color="inherit"
+            onClick={() => openLink('https://twitter.com/phvilaca1999')}
+            style={lateralMargin}>
+            <TwitterIcon />
+          </IconButton>
+          <IconButton
+            color="inherit"
+            onClick={() => openLink('https://www.instagram.com/phvilaca/')}
+            style={lateralMargin}>
+            <InstagramIcon />
+          </IconButton>
         </div>
       </div>
 

@@ -59,6 +59,10 @@ class Lancamentos extends React.Component {
           <div className="carousel-inner">
             <div className="carousel-item active">
               <img src={(this.state.lancamentos.length !== 0 ? 'https://image.tmdb.org/t/p/w500' + this.state.lancamentos[0].poster_path : '')} alt="" />
+              {/* <iframe class="carousel-video" width="100%" height="360"
+                src="https://www.youtube.com/embed/1Q8fG0TtVAY" frameborder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;showinfo"
+                allowfullscreen></iframe> */}
               <div className="carrousel-description">
 
                 <h2>

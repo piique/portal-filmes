@@ -254,6 +254,8 @@ ul {
 
 #destaque .destaque-item {
   /* justify-items: center; */
+  max-width: 300px;
+  max-height: 400px;
   align-self: end;
 }
 

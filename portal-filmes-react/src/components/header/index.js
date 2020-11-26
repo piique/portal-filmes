@@ -64,7 +64,7 @@ class Header extends React.Component {
 
   buscaFilme() {
     // api.get(`discover/movie?api_key=cf2c3634ed88cbfe8f8472ad68c511e6&language=pt-BR&sort_by=release_date.asc&include_adult=false&include_video=true&page=${page}&primary_release_year=2020&vote_average.gte=7`)
-    api.get(`https://api.themoviedb.org/3/search/movie?api_key=cf2c3634ed88cbfe8f8472ad68c511e6&language=pt-BR&query=${this.state.searchInput}&page=1&include_adult=false`)
+    api.get(`https://api.themoviedb.org/3/search/movie?api_key=${api.apiKey}&language=pt-BR&query=${this.state.searchInput}&page=1&include_adult=false`)
       .then(({ data }) => {
         if (data.length === 0) {
 
@@ -165,7 +165,6 @@ class Header extends React.Component {
           {this.state.filme.length > 0
             ? this.state.filme.map((e, index) => {
               return <div key={index} className="searchResult-item">
-                {/* varias coisas repetidas */}
                 <a href={`http://www.google.com/search?q=${e.title}`} target="_blank" rel="noreferrer">
                   <img
                     src={e ? ('https://image.tmdb.org/t/p/w500/' + e.poster_path) : ''}

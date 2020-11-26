@@ -53,7 +53,7 @@ class Destaque extends React.Component {
         // let count = this.state.destaques.length;
         let destaques = data.results.filter(((e) => {
           return e.poster_path && e.genre_ids.includes(generId);
-          return e.genre_ids.includes(generId);
+          // return e.genre_ids.includes(generId);
         })).map((e) => {
           console.log(e.release_date)
           const data = new Date(e.release_date)
@@ -68,9 +68,11 @@ class Destaque extends React.Component {
         console.log('chegou aqui caralho porra cuzao');
 
         destaques.forEach((e) => {
-          this.setState({
-            destaques: this.state.destaques.concat(e)
-          })
+          if (this.state.destaques.length < 4) {
+            this.setState({
+              destaques: this.state.destaques.concat(e)
+            })
+          }
         });
 
         console.log("Tamanho array: " + this.state.destaques.length);

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import Sobre from './Sobre';
-import PaginaNotFound from './PaginaNotFound';
+import PageNotFound from './PageNotFound';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Switch, Route } from 'react-router-dom' // importando o BrowserRouter do pacote que acabamos de instalar
 
@@ -12,13 +12,13 @@ ReactDOM.render(
     <Switch>
       <Route path="/" exact={true} component={App} />
       <Route path="/sobre" component={Sobre} />
-      <Route path='*' component={PaginaNotFound} />
+      <Route path='*' component={PageNotFound} />
     </Switch>
   </ BrowserRouter>,
   document.getElementById('root')
 );
 
-// PaginaNotFound.js
+// PageNotFound.js
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

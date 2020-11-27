@@ -61,15 +61,13 @@ ul {
 }
 
 /* telas pequenas com no maximo 1090px de width */
-
 @media screen and (min-width:713px) and (max-width: 1090px) {
-  .form-inline {
+  .menu-list {
     display: none!important;
   }
 }
 
 /* telas pequenas com no maximo 713px de width */
-
 @media screen and (min-width: 526px) and (max-width: 713px) {
   .header nav {
     display: none;
@@ -247,6 +245,12 @@ ul {
   border-radius: 4px;
 }
 
+/* todas as fotos do destaque */
+#destaque>a {
+  align-self: center;
+  justify-self: center;
+}
+
 #destaque .custom-select-sm {
   background-color: #8197a4;
   color: rgb(15, 23, 30);
@@ -283,7 +287,7 @@ ul {
   grid-row: 2;
 } */
 
-@media screen and (max-width: 1160px) {
+@media screen and (max-width: 1540px) {
   #destaque {
     grid-template-columns: auto auto;
   }
@@ -312,7 +316,7 @@ ul {
   }
 }
 
-@media screen and (max-width: 560px) {
+@media screen and (max-width: 780px) {
   .destaque-item {
     width: 70%;
   }

@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import Sobre from './Sobre';
-import PageNotFound from './PageNotFound';
+import App from './pages/App';
+import Sobre from './pages/Sobre/index';
+import PageNotFound from './pages/PageNotFound';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Switch, Route } from 'react-router-dom' // importando o BrowserRouter do pacote que acabamos de instalar
 

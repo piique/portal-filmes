@@ -4,7 +4,8 @@ import React, { Fragment } from "react";
 import logo from '../../img/logo-branco.png';
 import api from '../api';
 import './searchResult.css';
-import { Link } from "react-scroll";
+import ReactScroll from "react-scroll";
+import { Link } from 'react-router-dom';
 
 import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
@@ -120,34 +121,52 @@ class Header extends React.Component {
       <Fragment>
 
         <header className="header">
-          <img className="logo" src={logo} alt="Logo" height="90%" />
-          <nav id="menu">
-            <ul className="menu-list">
-              {this.state.menu.map((e, index) => {
-                return <Fragment>
-                  <li>
-                    <Link
-                      activeClass="active"
-                      className="link"
-                      to={e.link}
-                      spy={true}
-                      smooth={true}
-                      offset={-70}
-                      duration={500}>
-                      {e.name}
-                    </Link>
-                  </li>
-                  {/* adiciona | apenas entre os itens do menu */}
-                  {index !== this.state.menu.length - 1
-                    ? <li style={{ color: 'white' }}>
-                      |
+
+          {/* <Link
+            to={{
+              pathname: "/sobre",
+              search: `?filme=${e.original_title}`,
+              hash: "#the-hash",
+              state: { testandoCaralho: true }
+            }}
+          >
+            <img className={`destaque-item destaque-item${index + 1}`} src={'https://image.tmdb.org/t/p/w500/' + e.poster_path} href="#avaliacoes" alt="" onClick={this.handleImageClick} />
+          </Link> */}
+
+          <Link className="inicio" style={{ maxHeight: '60px' }} to="/">
+            <img className="logo" src={logo} alt="Logo" height="90%" href="#avaliacoes" />
+          </Link>
+
+
+          {this.props.showMenu === true ?
+            <nav id="menu">
+              <ul className="menu-list">
+                {this.state.menu.map((e, index) => {
+                  return <Fragment>
+                    <li>
+                      <ReactScroll.Link
+                        activeClass="active"
+                        className="link"
+                        to={e.link}
+                        spy={true}
+                        smooth={true}
+                        offset={-70}
+                        duration={500}>
+                        {e.name}
+                      </ReactScroll.Link>
                     </li>
-                    : ''
-                  }
-                </Fragment>
-              })}
-            </ul>
-          </nav>
+                    {/* adiciona | apenas entre os itens do menu */}
+                    {index !== this.state.menu.length - 1
+                      ? <li style={{ color: 'white' }}>
+                        |
+                    </li>
+                      : ''
+                    }
+                  </Fragment>
+                })}
+              </ul>
+            </nav>
+            : ''}
           <Paper className="form-inline" component="form" style={classes.root} onSubmit={(e) => { this.handleClick(e) }}>
             <InputBase
               style={classes.input}

@@ -25,6 +25,10 @@ body {
   padding-right: 40px;
 }
 
+.header .inicio {
+  height: 60px;
+}
+
 .logo {
   padding-left: 3%;
 }
@@ -258,7 +262,7 @@ ul {
   max-height: 400px;
   align-self: end;
 }
-
+/* 
 #destaque .destaque-item1 {
   grid-column: 1;
   grid-row: 2;
@@ -277,7 +281,7 @@ ul {
 #destaque .destaque-item4 {
   grid-column: 4;
   grid-row: 2;
-}
+} */
 
 @media screen and (max-width: 1160px) {
   #destaque {

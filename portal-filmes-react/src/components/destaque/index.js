@@ -1,61 +1,40 @@
-// import './App.css';
-// import { Link } from 'react-router-dom'
-
 import React from 'react';
-
-import destaque from '../../img/destaques/destaque.jpg';
-import destaque1 from '../../img/destaques/destaque1.jpg';
-import destaque2 from '../../img/destaques/destaque2.jpg';
-import destaque3 from '../../img/destaques/destaque3.jpg';
-// import destaque4 from '../../img/destaques/destaque4.jpg';
-// import destaque5 from '../../img/destaques/destaque5.jpg';
-// import destaque6 from '../../img/destaques/destaque6.jpg';
-// import destaque7 from '../../img/destaques/destaque7.jpg';
-// import destaque8 from '../../img/destaques/destaque8.jpg';
-// import destaque9 from '../../img/destaques/destaque9.jpg';
-// import destaque10 from '../../img/destaques/destaque10.jpg';
-// import destaque11 from '../../img/destaques/destaque11.jpg';
-// import destaque12 from '../../img/destaques/destaque12.jpg';
-// import destaque13 from '../../img/destaques/destaque13.jpg';
-// import destaque14 from '../../img/destaques/destaque14.jpg';
-// import destaque15 from '../../img/destaques/destaque15.jpg';
+import { Link } from 'react-router-dom'
 import api from '../api';
 
-
 class Destaque extends React.Component {
-
-  // Declarar uma nova variável de state, na qual chamaremos de "count"
 
   constructor(props) {
     super(props)
     this.state = {
-      estilo: {
-        display: 'none'
-      },
-      hasSearch: false,
-      filme: [],
-      searchInput: '',
-      img1: destaque,
-      img2: destaque1,
-      img3: destaque2,
-      img4: destaque3,
       destaques: [],
     }
     this.buscaDestaques = this.buscaDestaques.bind(this);
     this.destaqueOnChange = this.destaqueOnChange.bind(this);
   }
 
-  buscaDestaques(page = 1, generId) {
-    console.log("Chamou destaques: pagina: " + page);
+  getCategoryName(id) {
+    switch (id) {
+      case 28:
+        return 'Ação'
+      case 10749:
+        return 'Romance'
+      case 35:
+        return 'Comedia'
+      case 12:
+        return 'Aventura'
+      default:
+        return ''
+    }
+  }
 
+  buscaDestaques(page = 1, generId = 28) {
+    // busca filmes em destaque filtrando pelo genero (gennerId)
     api.get(`discover/movie?api_key=${api.apiKey}&language=pt-BR&sort_by=release_date.asc&include_adult=false&include_video=true&page=${page}&primary_release_year=2020&vote_average.gte=7`)
       .then(({ data }) => {
-        // let count = this.state.destaques.length;
         let destaques = data.results.filter(((e) => {
-          return e.poster_path && e.genre_ids.includes(generId);
-          // return e.genre_ids.includes(generId);
+          return e.poster_path && e.genre_ids.includes(generId) && e.overview !== '';
         })).map((e) => {
-          console.log(e.release_date)
           const data = new Date(e.release_date)
           e.release_date = (
             (data.getDay() < 10 ? '0' + data.getDay() : data.getDay()) + '/'
@@ -65,32 +44,30 @@ class Destaque extends React.Component {
           return e;
         });
 
-        console.log('chegou aqui caralho porra cuzao');
-
+        // setta estado dos destaques recebidos da api
         destaques.forEach((e) => {
           if (this.state.destaques.length < 4) {
+            e.category = this.getCategoryName(generId);
             this.setState({
               destaques: this.state.destaques.concat(e)
             })
           }
         });
 
-        console.log("Tamanho array: " + this.state.destaques.length);
-        if (this.state.destaques.length < 4) {
+        // chamada recursiva caso não tenha atingido 4 elementos
+        if (this.state.destaques.length < 4)
           this.buscaDestaques(page + 1, generId)
-        }
+
       }).catch((err) => {
         console.log(err)
       })
   }
 
   componentDidMount() {
-    // 28 = action moovie
-    this.buscaDestaques(1, 28);
+    this.buscaDestaques();
   }
 
   destaqueOnChange(event) {
-    console.log(event.target.value);
     this.setState({
       destaques: []
     })
@@ -106,7 +83,6 @@ class Destaque extends React.Component {
   }
 
   render() {
-
     return (
       <div id="destaque">
         <h2 className="destaque-item">Em destaque</h2>
@@ -118,13 +94,17 @@ class Destaque extends React.Component {
         </select>
 
         {this.state.destaques.map((e, index) => {
-          return <img className={`destaque-item destaque-item${index + 1}`} src={'https://image.tmdb.org/t/p/w500/' + e.poster_path} href="#avaliacoes" alt="" />
-          // return <b> {e.title} </b>
+          return <Link
+            to={{
+              pathname: "/sobre",
+              search: `?filme=${e.original_title}`,
+              // hash: "#the-hash",
+              state: { filme: this.state.destaques[index] }
+            }}
+          >
+            <img className={`destaque-item destaque-item${index + 1}`} src={'https://image.tmdb.org/t/p/w500/' + e.poster_path} href="#avaliacoes" alt="" />
+          </Link>
         })}
-        {/* <img className="destaque-item destaque-item1" src={this.state.img1} href="#avaliacoes" alt="" />
-        <img className="destaque-item destaque-item2" src={this.state.img2} alt="" />
-        <img className="destaque-item destaque-item3" src={this.state.img3} alt="" />
-        <img className="destaque-item destaque-item4" src={this.state.img4} alt="" /> */}
       </div>
     );
 
@@ -132,10 +112,9 @@ class Destaque extends React.Component {
 
 }
 
-
-
 export default Destaque;
 
+// category ids correlation
 // "genres": [
 //   {
 //     "id": 28,

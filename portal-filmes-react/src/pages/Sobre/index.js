@@ -16,7 +16,7 @@ function App(props) {
                 <div className="row">
                     <img src={'https://image.tmdb.org/t/p/w500/' + props.location.state.filme.poster_path} alt="" />
                 </div>
-                <div className="row">
+                <div >
                     <h1>{props.location.state.filme.title}</h1>
                     <p>{props.location.state.filme.overview}</p>
                     <p> <b>Categoria: </b> {props.location.state.filme.category}</p>

@@ -26,3 +26,7 @@
     max-width: 70%;
     max-height: 70%;
 }
+
+.container .information{
+    font-size: 1.1em;
+}

@@ -135,37 +135,37 @@ class Lancamentos extends React.Component {
             </div>
             <div className="carousel-item">
               <img src={(this.state.lancamentos.length !== 0
-                ? 'https://image.tmdb.org/t/p/w500' + this.state.lancamentos[3].poster_path
+                ? 'https://image.tmdb.org/t/p/w500' + this.state.lancamentos[3]?.poster_path
                 : '')} alt="" />
               <div className="carrousel-description">
 
                 <h2>
                   {this.state.lancamentos.length !== 0
-                    ? this.state.lancamentos[3].title
+                    ? this.state.lancamentos[3]?.title
                     : ''}
                 </h2>
                 <p>
                   <b>Sinopse: </b>
                   {this.state.lancamentos.length !== 0
-                    ? this.state.lancamentos[3].overview
+                    ? this.state.lancamentos[3]?.overview
                     : ''}
                 </p>
                 <p>
                   <b>Data de Lançamento: </b>
                   {(this.state.lancamentos.length !== 0
-                    ? this.state.lancamentos[3].release_date
+                    ? this.state.lancamentos[3]?.release_date
                     : '')}
                   <br />
                   <br />
                   <b>Título Original: </b>
                   {(this.state.lancamentos.length !== 0
-                    ? this.state.lancamentos[3].original_title
+                    ? this.state.lancamentos[3]?.original_title
                     : '')}
                   <br />
                   <br />
                   <b>Avaliação: </b>
                   {(this.state.lancamentos.length !== 0
-                    ? this.state.lancamentos[3].vote_average
+                    ? this.state.lancamentos[3]?.vote_average
                     : '') + ' /  10 '}
                 </p>
 
